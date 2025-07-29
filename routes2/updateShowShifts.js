@@ -7,8 +7,10 @@ module.exports = (app) => {
         // recievedShifts => Données doivent être tel quel dans la db, recues dans la req
         // previousShifts => Données enregistrées avant cette req pour update comparaison 
         const recievedShifts = req.body
+        const idShow = req.body[0].idShow
         console.log("updateShowShifts : ", recievedShifts)
-        const previousShiftsData = await getAllShiftsForUpate()
+        console.log("ID :: ", idShow)
+        const previousShiftsData = await getAllShiftsForUpate(idShow)
         const previousShifts = previousShiftsData ? {
             bar: previousShiftsData.filter(shift => shift.type === 'bar'),
             entree: previousShiftsData.filter(shift => shift.type === 'entree'),

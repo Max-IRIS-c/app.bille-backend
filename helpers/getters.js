@@ -330,6 +330,7 @@ async function getAllShiftsOfAshow(fkShow){
     }
 }
 async function getAllShiftsForUpate(idShow){
+    console.log("IDSHOW :: ", idShow)
     try{
         const allShiftOfAshow = await Shift.findAll({
             where: { fkLaBilleShow: idShow },
@@ -541,6 +542,7 @@ async function getExtraTimeByUserAndTypeAndShow(idUser, type, idShow){
         return null
     }
 }
+
 module.exports = {
     getAllShowAndShifts,
     getAllShiftsOfAshow,
