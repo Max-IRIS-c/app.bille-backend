@@ -7,7 +7,7 @@ require('dotenv').config()
 const authenticateToken = require('./authentification')
 
 const app = express()
-const port = 3017
+const port = 3000
 
 // Middlewares
 app.use(cors({ origin: true, credentials: true }))
