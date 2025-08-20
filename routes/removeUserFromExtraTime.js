@@ -14,7 +14,7 @@ module.exports = (app) => {
             }
             return res.status(status).send({msg: msg, data: data})
         }catch(error){
-            ////console.log(error)
+            //////console.log(error)
             return res.status(500).send({msg: 'error'})
         }
     })

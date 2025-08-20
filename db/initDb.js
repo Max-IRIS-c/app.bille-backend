@@ -45,7 +45,7 @@ async function init(){
             as: 'openingClosures'
         })
         await sequelize.authenticate()
-        //console.log('connexion to db successfull')
+        ////console.log('connexion to db successfull')
     } catch(error){
         console.error(`unable to connect to db : ${error}`)
     }

@@ -8,8 +8,8 @@ module.exports = (app) => {
         // previousShifts => Données enregistrées avant cette req pour update comparaison 
         const recievedShifts = req.body
         const idShow = req.body[0].idShow
-        console.log("updateShowShifts : ", recievedShifts)
-        console.log("ID :: ", idShow)
+        //console.log("updateShowShifts : ", recievedShifts)
+        //console.log("ID :: ", idShow)
         const previousShiftsData = await getAllShiftsForUpate(idShow)
         const previousShifts = previousShiftsData ? {
             bar: previousShiftsData.filter(shift => shift.type === 'bar'),
@@ -17,7 +17,7 @@ module.exports = (app) => {
             parking: previousShiftsData.filter(shift => shift.type === 'parking'),
             reunion: previousShiftsData.filter(shift => shift.type === 'reunion')
         } : null
-        console.log("previousShifts : ", previousShifts)
+        //console.log("previousShifts : ", previousShifts)
         // -------------------------- DELETE des shifts à supprimer ----------------------------------------
         if(previousShiftsData){
             try{
@@ -34,36 +34,36 @@ module.exports = (app) => {
                     }
                 }
             }catch(error){
-                ////console.log(error)            
+                //////console.log(error)            
                 return res.status(500).send({msg: `error`})
             }
             // -------------------------- UPDATE des infos (startTime, endTime, maxUsers) des shifts dejà existants ----------------------------------------
             try{
                 for(const newShift of getRecievedShiftsWithId(recievedShifts)){
                     const previousShiftToUpdate = (await getShiftById(newShift.idShift)).shift
-                    ////console.log("startTime !== startTime : ", newShift.startTime !== previousShiftToUpdate.startTime)
-                    ////console.log("endTime !== endTime : ", newShift.endTime !== previousShiftToUpdate.endTime)
-                    ////console.log("maxUsers !== maxUsers : ", newShift.maxUsers !== previousShiftToUpdate.maxUsers)
+                    //////console.log("startTime !== startTime : ", newShift.startTime !== previousShiftToUpdate.startTime)
+                    //////console.log("endTime !== endTime : ", newShift.endTime !== previousShiftToUpdate.endTime)
+                    //////console.log("maxUsers !== maxUsers : ", newShift.maxUsers !== previousShiftToUpdate.maxUsers)
                     previousShiftToUpdate.startTime = newShift.startTime !== previousShiftToUpdate.startTime ? newShift.startTime : previousShiftToUpdate.startTime
                     previousShiftToUpdate.endTime = newShift.endTime !== previousShiftToUpdate.endTime ? newShift.endTime : previousShiftToUpdate.endTime
                     previousShiftToUpdate.maxUsers = newShift.maxUsers !== previousShiftToUpdate.maxUsers ? newShift.maxUsers : previousShiftToUpdate.maxUsers
                     await previousShiftToUpdate.save()
                 }
             }catch(error){
-                ////console.log(error)            
+                //////console.log(error)            
                 return res.status(500).send({msg: `error`})
             }
         }
         // -------------------------- CREATE des shifts à Ajouter ----------------------------------------
         try{
             const recievedShiftsWithoutId = getRecievedShiftsWithoutId(recievedShifts)
-            ////console.log("SHIFT A AJOUTER : ", recievedShiftsWithoutId)
+            //////console.log("SHIFT A AJOUTER : ", recievedShiftsWithoutId)
             if(recievedShiftsWithoutId){
                 await setShiftToShow(recievedShiftsWithoutId, recievedShifts.idShow) 
             }
             return res.status(200).send({msg: `success`})
         }catch(error){
-            ////console.log(error)            
+            //////console.log(error)            
             return res.status(500).send({msg: `error`})
         }
         

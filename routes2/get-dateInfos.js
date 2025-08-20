@@ -2,21 +2,21 @@ const { getAllShiftsOfAshow, getShowById, getExtraTimesOfShow, getAllInfosOfShow
 module.exports = (app) => {
     app.get('/api/getDateInfos', async function (req, res) {
         try{
-            //////console.log("getDateInfos : ", req.query)
+            ////////console.log("getDateInfos : ", req.query)
             const idShow = req.query.idShow
             try{
                 const show = await getAllInfosOfShow(idShow) // getShowById(idShow)
-                //console.log("show ::::::::. ", show)
+                ////console.log("show ::::::::. ", show)
                 if(!show){      
                     return res.status(400).send({msg: `error_bad_data`})
                 }
                 const extraTimes = await getExtraTimesOfShow(idShow)
-                console.log("get extraTime : ", extraTimes)
+                //console.log("get extraTime : ", extraTimes)
                 const result = {
                     ...show,
                     extraTimes
                 }
-                console.log("result : ", result)
+                //console.log("result : ", result)
                 const msg = result ? `success_containData` : `Error_system1`
                 const status = result ? 200 : 500
                 return res.status(status).send({msg: msg, data: result})
@@ -25,7 +25,7 @@ module.exports = (app) => {
                 return res.status(500).send({msg})
             }
         }catch(error){
-            ////console.log(error)
+            //////console.log(error)
             res.status(500).json({ msg: 'error_getAllShowAndShifts', error: error });
         }
     }

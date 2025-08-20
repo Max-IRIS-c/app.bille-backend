@@ -2,11 +2,11 @@ const { getAllShiftsOfAshow } = require('../helpers/getters')
 module.exports = (app) => {
     app.get('/api/getAllShiftsOfAshow', async function (req, res) {
         try{
-            ////console.log("getAllShiftsOfAshow : ", req.query)
+            //////console.log("getAllShiftsOfAshow : ", req.query)
             const idShow = req.query.idShow
             try{
                 const allShiftsOfShow = await getAllShiftsOfAshow(idShow)
-                ////console.log("shifts : ", allShiftsOfShow)
+                //////console.log("shifts : ", allShiftsOfShow)
                 if(!allShiftsOfShow){      
                     return res.status(200).send({msg: `success_noData`})
                 }
@@ -37,7 +37,7 @@ module.exports = (app) => {
                 return res.status(500).send({msg})
             }
         }catch(error){
-            ////console.log(error)
+            //////console.log(error)
             res.status(500).json({ msg: 'error_getAllShowAndShifts', error: error });
         }
     }

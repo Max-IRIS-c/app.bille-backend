@@ -5,7 +5,7 @@ module.exports = (app) => {
     app.post('/api/createUser', async function (req, res){
         try{
             const dataRecieved = req.body   
-            console.log("dataRecieved : ", dataRecieved)
+            //console.log("dataRecieved : ", dataRecieved)
             const randomPassword = generateRandomPassword()
             const formatedData = validatedAndFormatedData(dataRecieved, randomPassword)
             const loginDispo = await loginAvailable(formatedData.login)
@@ -13,7 +13,7 @@ module.exports = (app) => {
             const insertedUser = await insertNewUser(formatedData)
             return res.status(200).send({msg: 'Utilisateur créé avec succès', data: insertedUser})
         }catch(err){
-            console.log("erreur creation user ::: ", err)
+            //console.log("erreur creation user ::: ", err)
             return res.status(err.status || 500).send({msg : err.message || "Oups! Il y a eu un soucis."})
         }
     })
@@ -41,7 +41,7 @@ const generateRandomPassword = (length = 12) => {
     return password
 }
 const insertNewUser = async (givenData) => {
-    console.log(givenData)
+    //console.log(givenData)
     try{
         const insertion = await User.create({
             login: givenData.login,
@@ -53,7 +53,7 @@ const insertNewUser = async (givenData) => {
         })
         return insertion.dataValues
     }catch(error){
-        console.log("erreur insertion : ", error)
+        //console.log("erreur insertion : ", error)
         throw {status: 500, message: "Oups ! Quelque chose s'est mal passé"}
     }   
 }

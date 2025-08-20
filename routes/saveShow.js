@@ -7,7 +7,7 @@ const LaBilleShow = require('../models/laBilleShow')
 // supprime toutes les données liée à la date
 module.exports = (app) => {
     app.post('/api/saveShow', async (req, res) => {  
-      ////console.log("input saveshow : ", req.body)
+      //////console.log("input saveshow : ", req.body)
         const recievedShow = req.body
         const dateConcerned = recievedShow.date
         const recordedShow = await getShowByDate(dateConcerned) 

@@ -8,11 +8,11 @@ module.exports = (app) => {
     app.post('/api/login', async (req, res) => {
         const login = req.body.login
         const password = req.body.password
-        //console.log("body : ", req.body)
+        ////console.log("body : ", req.body)
         try{
             // requete qui va chercher l'utilisateur (son login)
             let userData = await getActivUserByLogin(login, password)
-            //console.log("userData : ", userData)
+            ////console.log("userData : ", userData)
             const isPasswordValid = await bcrypt.compare(password, userData.password)
             if(!isPasswordValid) throw { status: 400, msg: "bad_user_data_p" } 
             const dataOfUserFormated = {
@@ -31,9 +31,9 @@ module.exports = (app) => {
 }
 async function getActivUserByLogin(givenLogin, givenPassword){
     const userFound = await User.findOne({ where: {login: givenLogin }})
-    //console.log("userfound : ", userFound)
-    console.log("password : ", givenPassword)
-    console.log("passwordRef : ", userFound.passwordConnexion)
+    ////console.log("userfound : ", userFound)
+    //console.log("password : ", givenPassword)
+    //console.log("passwordRef : ", userFound.passwordConnexion)
     if(!userFound) throw { msg: "bad_user_data_l", status: 400 }
     if(userFound.status !== true) throw { msg: "deleted_user", status: 400 }   
     if(!userFound.isAlreadyConnected && userFound.passwordConnexion !== givenPassword) throw { status: 400, msg: "bad_user_data_1p" } 

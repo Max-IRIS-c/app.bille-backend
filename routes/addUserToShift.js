@@ -5,7 +5,7 @@ const { getShowByDate, getAllShiftsOfAshow } = require("../helpers/getters")
 module.exports = (app) => {
     app.post('/api/addUserToShift', async (req, res) => {    
         const dataReceived = req.body
-        ////console.log("dataReceived : ", dataReceived)
+        //////console.log("dataReceived : ", dataReceived)
         const shiftsReceived = req.body.shifts
         const idUser = req.body.idUser
         const showConcerned = await getShowByDate(dataReceived.date) || await setShow(dataReceived) // si pas de show existant enregistrement
@@ -36,7 +36,7 @@ function getIdsAndTypesOfShiftsIntoInsertUser(shifts, shiftsOfShowConcerned, use
         
         // Si un shift correspondant est trouvé et contient l'utilisateur donné
         if (matchingShift) {
-          ////console.log("matchingShift : ", matchingShift)
+          //////console.log("matchingShift : ", matchingShift)
           const userInShift = matchingShift.users.find(user => user.id === userId);
           if (userInShift) {
             return {

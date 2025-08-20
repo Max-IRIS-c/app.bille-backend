@@ -9,7 +9,7 @@ module.exports = (app) => {
         const login = req.body.login
         const firstPassword = req.body.firstPassword
         const secondPassword = req.body.secondPassword
-        console.log("body : ", req.body)
+        //console.log("body : ", req.body)
         try{
             if(firstPassword !== secondPassword) throw { status: 400, msg: "bad_user_data_p" }       
             const cryptedPassword = await bcrypt.hash(firstPassword, 10)
@@ -21,7 +21,7 @@ module.exports = (app) => {
             })
             await userData.save()
             const accessToken = jwt.sign(userData.toJSON(), process.env.ACCESS_TOKEN_SECRET)
-            console.log("data : ", userData.dataValues)
+            //console.log("data : ", userData.dataValues)
             return res.status(200).send({status: "success_login", msg: "success_login", data: userData.dataValues, token: accessToken})
         }catch(error){
             console.error(error)

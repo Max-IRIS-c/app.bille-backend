@@ -10,7 +10,7 @@ module.exports = (app) => {
             const msg = `success_getAllShowAndShifts`
             return res.status(200).send({msg: msg, data: statusOfDates})
         }catch(error){ 
-            ////console.log(error)
+            //////console.log(error)
             res.status(500).json({ msg: 'error_500', error: error });
         }
     }

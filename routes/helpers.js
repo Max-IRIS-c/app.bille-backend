@@ -12,7 +12,7 @@ async function getUserByLogin(userLogin){
         }
         return null
     }catch(error){
-        ////console.log("ERROR HERE : ", error)
+        //////console.log("ERROR HERE : ", error)
         return null
     }
 }

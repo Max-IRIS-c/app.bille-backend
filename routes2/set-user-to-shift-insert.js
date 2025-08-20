@@ -10,24 +10,24 @@ module.exports = (app) => {
         const concernedShift = await getConcernedShift(idShiftConcerned)
         const userAlreadyPresent = concernedShift.shiftUsers.filter(user => user.idUser === idUserConcerned) 
         if(userAlreadyPresent && userAlreadyPresent.length > 0){
-            ////console.log("user deja inscrit ! ")
+            //////console.log("user deja inscrit ! ")
             return res.status(500).send({msg:'fail'})
         }
         //check if shift isFull
         if(concernedShift.shiftUsers && concernedShift.maxUsers <= concernedShift.shiftUsers.length){
-            ////console.log("shift plein")
+            //////console.log("shift plein")
             return res.status(500).send({msg: 'fail'})
         }
         const insertionOfUser = await insertUserInShift(idUserConcerned, idShiftConcerned, typeConcerned)
         if(!insertionOfUser) return res.status(500).send({msg: 'unknown_error'})
         const login = await getUserById(idUserConcerned)
-        console.log("log : ", login)
+        //console.log("log : ", login)
         const dataToReturn = {
             idSubscribe: insertionOfUser.dataValues.idShiftAsUser,
             idUser: insertionOfUser.dataValues.idUser,
             username: login
         }
-        //console.log(dataToReturn)
+        ////console.log(dataToReturn)
         return res.status(200).send({msg: 'success', data: dataToReturn}) 
     })
 }

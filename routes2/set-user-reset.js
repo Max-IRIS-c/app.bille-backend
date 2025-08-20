@@ -4,10 +4,10 @@ module.exports = (app) => {
     app.post('/api/resetUser', async function (req, res){
         try{
             const idUser = req.body.idUser
-            console.log("reset : ", idUser)
+            //console.log("reset : ", idUser)
             if(!idUser) throw { status: 400, msg: 'bad_data' }
             const concernedUser = await getUserByIdForUpdate(idUser)
-            console.log("user : ", concernedUser)
+            //console.log("user : ", concernedUser)
             if (!concernedUser) throw { status: 404, msg: "no_user_found" };
             const rdnPassword = generateRandomPassword()
             concernedUser.set({
@@ -18,7 +18,7 @@ module.exports = (app) => {
             await concernedUser.save()
             return res.status(200).send({ msg: "success" })
         }catch(error){     
-            console.log("e::", error)
+            //console.log("e::", error)
             return res.status(error.status || 500).send({msg: error.msg || 'fail'})
         }
     })

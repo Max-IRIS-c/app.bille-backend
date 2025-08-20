@@ -3,7 +3,7 @@ const Shift = require('../models/shift')
 module.exports = (app) => {
     app.post('/api/createShift', async (req, res) => {
         try{
-            console.log("create shift : ", req.body)
+            //console.log("create shift : ", req.body)
             const recievedData = req.body
             const insert = await createShift(recievedData)  
             return res.status(200).send({status: "success", data: insert})
@@ -22,7 +22,7 @@ const createShift = async (recievedData) => {
         endTime: recievedData.endTime,
         indexForType: recievedData.indexForType
     })
-    console.log("newShift : ", newShift)
+    //console.log("newShift : ", newShift)
     if(!newShift) throw new Error()
-    else return newShift
+    else return newShift.dataValues
 }

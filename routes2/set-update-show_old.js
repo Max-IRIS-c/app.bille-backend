@@ -4,7 +4,7 @@ const { getShowById, getPreviousStatusOfShow } = require('../helpers/getters')
 module.exports = (app) => {
     app.post('/api/updateShowInformations', async (req, res) => {  
         const dataRecieved = req.body
-        //console.log("updateShowInformations : ", dataRecieved)
+        ////console.log("updateShowInformations : ", dataRecieved)
         if(!dataRecieved.laBilleShowId){
             return res.status(400).send("error_user")
         }
@@ -12,8 +12,8 @@ module.exports = (app) => {
         const actualData = await getShowById(dataRecieved.laBilleShowId)
         const previousStatus = actualData.status
         
-        //console.log("previous status : ", previousStatus)
-        //console.log("actual status : ", dataRecieved.status )
+        ////console.log("previous status : ", previousStatus)
+        ////console.log("actual status : ", dataRecieved.status )
         // ----------------- if status didnt change or normal=>soiree ----------------------------------
         if(previousStatus === dataRecieved.status ||
             (previousStatus === 'normale' && dataRecieved.status === 'soiree')
@@ -39,7 +39,7 @@ module.exports = (app) => {
         // fermé ==> soirée       
         // création de shifts basique
         if (isPreviousClosed && isNewStatusNormalOrSoiree) {
-            ////console.log("de fermé à soirée ou normal")
+            //////console.log("de fermé à soirée ou normal")
            setBasicalShiftTemplateToShow(dataRecieved.laBilleShowId)
         }
         // normale ==> fermé
@@ -47,7 +47,7 @@ module.exports = (app) => {
         // réunion ==> fermé   
         //suppression de touts les shifts et utilisateurs inscrits   
         else if(!isPreviousClosed && isNewClosed){  
-            //console.log("here")
+            ////console.log("here")
             await destroyAllShiftsAndUsersOfAShow(dataRecieved.laBilleShowId)
         }
         else if(isNewStatusNormalOrSoiree && dataRecieved.status === 'reunion'){
@@ -70,7 +70,7 @@ module.exports = (app) => {
             const update = await actualData.save()          
             return update ? res.status(200).send({msg : "success"}) : res.status(500).send({msg : "fail"})
         }catch(error){
-            ////console.log(error)
+            //////console.log(error)
             return res.status(500).send({msg: "error_system"})
         }
         

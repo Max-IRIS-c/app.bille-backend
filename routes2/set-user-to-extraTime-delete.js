@@ -8,11 +8,11 @@ module.exports = (app) => {
             console.log("delete : ", idExtraTime)
             if(!idExtraTime) throw { status: 400, msg: 'fail_no_user'}
             const extraTimeExist = await getExtraTime(idExtraTime)
-            console.log("extra ::", extraTimeExist)
+            //console.log("extra ::", extraTimeExist)
             await extraTimeExist.destroy()
             return res.status(200).send({msg: "success"})
         }catch(error){
-            console.log("Erreur : ", error)
+            //console.log("Erreur : ", error)
             return res.status(error.status || 500).send({msg: error.msg || 'fail'})
         }
     })

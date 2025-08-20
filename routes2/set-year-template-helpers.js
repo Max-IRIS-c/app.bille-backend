@@ -12,7 +12,7 @@ async function checkExistingTemplate(year){
         })
         return (check.length > 0) ? true : false
     }catch(error){
-        ////console.log("error try : ", error)
+        //////console.log("error try : ", error)
     }
 }
 
@@ -40,8 +40,8 @@ async function setShowAndShifts(show, shifts){
         }
         return true
     }catch(error){
-        //////console.log("show : ", show)
-        //////console.log("err : ", error)
+        ////////console.log("show : ", show)
+        ////////console.log("err : ", error)
         return null
     }
 } 
@@ -51,7 +51,7 @@ async function getAllDatesYear(year){
     const startDate = new Date(`${year}-01-01`)
     const endDate = new Date(`${year}-12-31`)
     const allDates = (startDate && endDate) ? eachDayOfInterval({ start: startDate, end: endDate }) : null
-    ////console.log(allDates)
+    //////console.log(allDates)
     return allDates
 }
 // return name of day of date (monday tuesday etc)
@@ -65,7 +65,7 @@ function getFormatedDate(date){
     const month = parseInt(date.getMonth() + 1) < 10 ? `0${date.getMonth() + 1}` : `${date.getMonth() + 1}`
     const day = parseInt(date.getDate()) < 10 ? `0${date.getDate()}` : `${date.getDate()}`
     const result = `${year}-${month}-${day}`
-    ////console.log("result : ", result)
+    //////console.log("result : ", result)
     return result
 }
 // determine if a date is the last tuesday of the month (true if is and else false)  

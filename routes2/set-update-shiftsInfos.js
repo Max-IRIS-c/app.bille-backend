@@ -4,7 +4,7 @@ const ShiftAsUser = require('../models/shiftAsUser')
 
 module.exports = (app) => {
     app.post('/api/updateShifts', async (req, res) => {  
-        console.log("updateShiftsInformations : ", req.body)
+        //console.log("updateShiftsInformations : ", req.body)
         const idShow = req.body.idShow
         const showStatus = req.body.showStatus
         const shifts = req.body.shifts
@@ -48,7 +48,7 @@ async function createShifts(idShow, shiftArray){
         }))
         if(newShiftInsertion) return true
     }catch(error){
-        console.log(error)
+        //console.log(error)
         return false
     }
 }
@@ -64,7 +64,7 @@ async function setUserToShift(idUser, idShift, type){
         })
         return newUserInShift.dataValues
     }catch(error){
-        ////console.log("erreur : ", error)
+        //////console.log("erreur : ", error)
         return false
     }
 }

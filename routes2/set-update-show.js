@@ -4,7 +4,7 @@ const { getShowById } = require('../helpers/getters')
 module.exports = (app) => {
     app.post('/api/updateShowInformations', async (req, res) => {  
         const dataRecieved = req.body
-        console.log("dataRecieved :::: ", dataRecieved)
+        //console.log("dataRecieved :::: ", dataRecieved)
         try{
             if(!dataRecieved.laBilleShowId) throw new Error()
             const actualData = await getShowById(dataRecieved.laBilleShowId)
@@ -15,7 +15,7 @@ module.exports = (app) => {
             if(!update) throw new Error()         
             return res.status(200).send({msg : "success"}) 
           }catch(error){
-            console.log(error)
+            //console.log(error)
             return res.status(500).send({msg: "error_system"})
         }
     })

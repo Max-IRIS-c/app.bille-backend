@@ -8,11 +8,11 @@ module.exports = (app) => {
     app.post('/api/login', async (req, res) => {
         const login = req.body.login
         const password = req.body.password
-        ////console.log("data : ", login, ", ", password)
+        //////console.log("data : ", login, ", ", password)
         try{
             // requete qui va chercher l'utilisateur (son login)
             let userData = await getUserByLogin(login)
-            ////console.log("userdata0 : ", userData)
+            //////console.log("userdata0 : ", userData)
             if(userData === null){ // si il ne trouve rien 
                 const msg = "error_data"
                 return res.status(400).send({msg: msg}) 
@@ -26,7 +26,7 @@ module.exports = (app) => {
             }
             // si passwords correspondent => user connecté !
             const msg = "success_login"
-            ////console.log(msg)
+            //////console.log(msg)
             //const accessToken = jwt.sign(userData, process.env.ACCESS_TOKEN_SECRET)
             return res.status(200).send({msg: msg, data: userData})
         }catch(error){

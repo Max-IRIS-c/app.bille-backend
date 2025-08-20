@@ -11,7 +11,7 @@ const sequelize = new Sequelize(
             timezone: 'Etc/GMT-2',
             allowPublicKeyRetrieval: true
         },
-        logging: false //////console.log 
+        logging: false ////////console.log 
     }
 )
 module.exports = { sequelize }

@@ -9,7 +9,7 @@ module.exports = (app) => {
             if(!users || users.length === 0) throw new Error()
             return res.status(200).send({msg: 'success', data: users})
         }catch(error){
-            console.log("1: ", error)
+            //console.log("1: ", error)
             const stat = 400
             return res.status(stat).send({msg: 'failed'})
         }
@@ -29,7 +29,7 @@ async function getAllEnabledUsers(){
         const resultFiltred = usersFounded.map((user) => user.dataValues)
         return resultFiltred
     }catch(error){
-        console.log("2: ", error)
+        //console.log("2: ", error)
         return null
     }
     

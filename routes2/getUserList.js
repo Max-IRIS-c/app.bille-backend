@@ -8,7 +8,7 @@ module.exports = (app) => {
             const status = userList ? 200 : 500
             res.status(status).send({msg: msg, data: userList})
         }catch(error){
-            ////console.log(error)
+            //////console.log(error)
             res.status(500).json({ msg: 'error_getUserList', error: error });
         }
     }
