@@ -58,8 +58,6 @@ const checkIfShowIsComplete = (show) => {
     if(show.status === 'reunion' || show.status === 'ferme') return true
     //if(!show.openingClosures || show.openingClosures.length === 0) return false // si personne inscrit a Extratime
     const unFullShifts = show.shifts.find(shift => { 
-        console.log("length  : ", shift.shiftUsers.length)
-        console.log("attendu : ", shift.maxUsers)
         return shift.shiftUsers.length < shift.maxUsers
     })
     return !unFullShifts 
