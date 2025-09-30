@@ -7,6 +7,7 @@ module.exports = (app) => {
         if(!startDate || !endDate) return res.status(400).send({msg: 'error_400'})
         try{
             const statusOfDates = await getstatusOfShowsOfMonth(startDate, endDate)
+            console.log("STATUS :: ", statusOfDates)
             const msg = `success_getAllShowAndShifts`
             return res.status(200).send({msg: msg, data: statusOfDates})
         }catch(error){ 

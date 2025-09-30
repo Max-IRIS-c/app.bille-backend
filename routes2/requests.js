@@ -37,7 +37,7 @@ async function getstatusOfShowsOfMonth(startDate, endDate){
                 attributes: ['fkUser']
             }
         }],
-        attributes: ['laBilleShowId', 'date', 'status'],
+        attributes: ['laBilleShowId', 'date', 'status', 'notes'],
     });
     if(!allShowsFromMonth) return null
     let dataToReturn = []
@@ -46,7 +46,8 @@ async function getstatusOfShowsOfMonth(startDate, endDate){
             laBilleShowId: show.laBilleShowId,
             date: show.date,
             status: show.status,
-            isShowFull: checkIfShowIsComplete(show.dataValues)
+            isShowFull: checkIfShowIsComplete(show.dataValues),
+            notes: show.notes
         }) 
     }
     return dataToReturn
