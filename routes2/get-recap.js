@@ -14,6 +14,7 @@ module.exports = (app) => {
             const givenMonthNbr = req.query.monthNbr
             const givenYearNbr = req.query.yearNbr
             const count = await Shift.count({
+                where: {type: { [Op.ne]: 'reunion' }},
                 include: [
                     {
                         model: LaBilleShow,
