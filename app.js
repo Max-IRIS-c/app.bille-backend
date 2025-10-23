@@ -46,6 +46,7 @@ require('./routes2/set-user-reset.js')(app)
 require('./routes2/set-shift-update.js')(app)
 require('./routes2/set-shift-create.js')(app)
 require('./routes2/set-shift-delete.js')(app)
+require('./routes2/get-recap.js')(app)
 
 app.use('/api', apiRouter)
 
